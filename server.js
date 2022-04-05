@@ -40,7 +40,7 @@ app.route("/api/notes")
         let newNote = req.body;
         let highestId = 99;
 
-        
+
         for (let i = 0; i < database.length; i++) {
             let individualNote = database[i];
 
@@ -63,31 +63,6 @@ app.route("/api/notes")
         // Gives back the response, which is the user's new note. 
         res.json(newNote);
     });
-
-//DELETE 
-app.delete("/api/notes/:id", function (req, res) {
-    let jsonFilePath = path.join(__dirname, "/db/db.json");
-    // request to delete note by id.
-    for (let i = 0; i < database.length; i++) {
-
-        if (database[i].id == req.params.id) {
-            // Splice takes i position, and then deletes the 1 note.
-            database.splice(i, 1);
-            break;
-        }
-    }
-    // Write the db.json file again.
-    fs.writeFileSync(jsonFilePath, JSON.stringify(database), function (err) {
-
-        if (err) {
-            return console.log(err);
-        } else {
-            console.log("Your note was deleted!");
-        }
-    });
-    res.json(database);
-});
-
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
