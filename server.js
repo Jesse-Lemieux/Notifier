@@ -39,6 +39,8 @@ app.route("/api/notes")
         let jsonFilePath = path.join(__dirname, "/db/db.json");
         let newNote = req.body;
         let highestId = 99;
+
+        
         for (let i = 0; i < database.length; i++) {
             let individualNote = database[i];
 
